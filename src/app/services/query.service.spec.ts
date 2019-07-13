@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QueryService } from './query-service.service';
+import { QueryService } from './query.service';
 
 describe('QueryService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

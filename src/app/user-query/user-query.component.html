@@ -1,0 +1,9 @@
+<div class="container-fluid"> 
+  <form [formGroup]="queryForm" (ngSubmit)="onSubmit(queryForm.value)">
+    <div class="form-group">
+      <label for="user-query"></label>
+      <input type="text" class="form-control" id="user-query" aria-describedby="query-for-google-book-api" placeholder="Enter what you want" formControlName="userQuery">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>  
+</div>

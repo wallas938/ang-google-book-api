@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { QueryService } from '../services/query.service';
+import { Subscriber, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-query',
@@ -21,8 +22,12 @@ export class UserQueryComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.queryService.displayQuery(this.queryForm.value)
+  bookDisplayer() {
+
   }
 
+  onSubmit() {
+
+  }
+  
 }

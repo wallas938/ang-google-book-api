@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { QueryService } from '../services/query.service';
 import { Subscriber, Subscription } from 'rxjs';
+import { Ibook } from '../interfaces/Ibook';
 
 @Component({
   selector: 'app-user-query',
@@ -10,13 +11,13 @@ import { Subscriber, Subscription } from 'rxjs';
 })
 export class UserQueryComponent implements OnInit {
 
-  queryForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  books
+
+  userQuery = new FormControl('')
+
+  constructor(
     private queryService: QueryService) { 
-    this.queryForm = this.formBuilder.group({
-      userQuery: ''
-    })
   }
 
   ngOnInit() {
@@ -27,7 +28,26 @@ export class UserQueryComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.queryService.getBook(this.userQuery.value).subscribe(
+      books => {
+        this.books = books.items.map(book => {
+          let formatedBook = {
+            title: book.volumeInfo.title,
+            author: book.volumeInfo.authors,
+            categories: book.volumeInfo.categories,
+            description: book.volumeInfo.description,
+            language: book.volumeInfo.language
+          }
+          return formatedBook
+        })
+        
+      console.log(this.books)
+      }
+      
+    )
+    
+    this.userQuery.setValue('')
+    
   }
   
 }

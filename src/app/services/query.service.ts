@@ -10,9 +10,7 @@ export class QueryService {
 
   constructor(private http: HttpClient) { }
 
-  books = []
-
-  getBook(query: String): Observable<Ibook[]>{
-    return this.http.get<Ibook[]>('https://www.googleapis.com/books/v1/volumes?q=' + query)
+  getBook(query: String): Observable<any>{
+    return this.http.get<any>('https://www.googleapis.com/books/v1/volumes?q=' + query)
   }
 }

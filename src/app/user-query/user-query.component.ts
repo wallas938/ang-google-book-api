@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { QueryService } from '../services/query.service';
 import { Subscriber, Subscription } from 'rxjs';
@@ -9,10 +9,11 @@ import { Ibook } from '../interfaces/Ibook';
   templateUrl: './user-query.component.html',
   styleUrls: ['./user-query.component.css']
 })
-export class UserQueryComponent implements OnInit {
+export class UserQueryComponent implements OnInit, OnDestroy {
 
+  books: Ibook[] = []
 
-  books
+  booksSubscription: Subscription
 
   userQuery = new FormControl('')
 
@@ -28,10 +29,10 @@ export class UserQueryComponent implements OnInit {
   }
 
   onSubmit() {
-    this.queryService.getBook(this.userQuery.value).subscribe(
+    this.booksSubscription = this.queryService.getBook(this.userQuery.value).subscribe(
       books => {
         this.books = books.items.map(book => {
-          let formatedBook = {
+          let formatedBook: Ibook = {
             title: book.volumeInfo.title,
             author: book.volumeInfo.authors,
             categories: book.volumeInfo.categories,
@@ -40,14 +41,13 @@ export class UserQueryComponent implements OnInit {
           }
           return formatedBook
         })
-        
-      console.log(this.books)
+        console.log(this.books)
       }
-      
     )
-    
     this.userQuery.setValue('')
-    
   }
   
+  ngOnDestroy() {
+    this.booksSubscription.unsubscribe();
+  }
 }

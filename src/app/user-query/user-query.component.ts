@@ -12,7 +12,7 @@ import { Ibook } from '../interfaces/Ibook';
 export class UserQueryComponent implements OnInit {
 
 
-  books
+  books: any[]
 
   userQuery = new FormControl('')
 
@@ -36,12 +36,12 @@ export class UserQueryComponent implements OnInit {
             author: book.volumeInfo.authors,
             categories: book.volumeInfo.categories,
             description: book.volumeInfo.description,
-            language: book.volumeInfo.language
+            language: book.volumeInfo.language,
           }
+          console.log(books)
           return formatedBook
         })
         
-      console.log(this.books)
       }
       
     )

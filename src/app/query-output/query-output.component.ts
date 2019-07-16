@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-query-output',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./query-output.component.css']
 })
 export class QueryOutputComponent implements OnInit {
+
+  @Input() books
 
   constructor() { }
 

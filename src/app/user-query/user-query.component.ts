@@ -32,14 +32,16 @@ export class UserQueryComponent implements OnInit, OnDestroy {
     this.booksSubscription = this.queryService.getBook(this.userQuery.value).subscribe(
       books => {
         this.books = books.items.map(book => {
-          let formatedBook: Ibook = {
+          let formatedBook: any = {
             title: book.volumeInfo.title,
             author: book.volumeInfo.authors,
             categories: book.volumeInfo.categories,
             description: book.volumeInfo.description,
             language: book.volumeInfo.language,
+            smallThumbnail: book.volumeInfo.imageLinks.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "vide",
+            thumbnail: book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : "vide"
           }
-          console.log(books)
+          console.log(book.volumeInfo.imageLinks)
           return formatedBook
         })
         console.log(this.books)

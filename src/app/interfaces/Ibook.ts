@@ -4,6 +4,5 @@ export interface Ibook {
     categories: Array<String>,
     description: String,
     language: String,
-    smallThumbnail: String,
     thumbnail: String
 }

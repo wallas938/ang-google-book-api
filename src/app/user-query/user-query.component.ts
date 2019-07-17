@@ -38,8 +38,7 @@ export class UserQueryComponent implements OnInit, OnDestroy {
             categories: book.volumeInfo.categories,
             description: book.volumeInfo.description,
             language: book.volumeInfo.language,
-            smallThumbnail: book.volumeInfo.imageLinks.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "vide",
-            thumbnail: book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : "vide"
+            thumbnail: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://www.404.ie/assets/img/logo_blue.png"
           }
           console.log(book.volumeInfo.imageLinks)
           return formatedBook

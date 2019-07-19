@@ -33,6 +33,7 @@ export class UserQueryComponent implements OnInit, OnDestroy {
       books => {
         this.books = books.items.map(book => {
           let formatedBook: any = {
+            id: book.id,
             title: book.volumeInfo.title,
             author: book.volumeInfo.authors,
             categories: book.volumeInfo.categories,
@@ -40,10 +41,9 @@ export class UserQueryComponent implements OnInit, OnDestroy {
             language: book.volumeInfo.language,
             thumbnail: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://www.404.ie/assets/img/logo_blue.png"
           }
-          console.log(book.volumeInfo.imageLinks)
           return formatedBook
         })
-        console.log(this.books)
+        console.log(books)
       }
     )
     this.userQuery.setValue('')
